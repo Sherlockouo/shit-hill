@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<body>
+    <div > 
+        <ul id="img-ul">
+
+        </ul>
+    </div>
+    <script>
+        var ul = document.getElementById("img-ul")
+        const xhr = new XMLHttpRequest()
+        // xhr.open('get',"http://localhost:8088/search?page=7&keywords=black%20stocking")
+        xhr.open('get',window.location.href)
+        xhr.send()
+        xhr.onload = function (){
+            
+            var resp = JSON.parse(xhr.response)
+            for (var i = 0; i < resp.data.length; i++)   {
+                
+                var li = document.createElement("li")
+                var img = document.createElement("img")
+                console.log(resp.data[i].path)
+                img.src = resp.data[i].path
+                li.appendChild(img)
+                ul.appendChild(li)
+            }
+        }
+        
+        // // for (var i = 0; i < xhr.response)
+        
+    </script>
+</body>
